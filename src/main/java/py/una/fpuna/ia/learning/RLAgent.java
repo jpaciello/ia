@@ -232,9 +232,18 @@ public class RLAgent {
 			ex.printStackTrace();
 			System.exit(1);
 		}
-		int posicion = Integer.parseInt(linea);
-		int x = posicion / 3;
-		int y = posicion % 3;
+                
+                // se recibe una jugada entre 1 y 9, mismo layout que el teclado numerico
+                // |7|8|9|
+                // -------
+                // |4|5|6|
+                // -------
+                // |1|2|3|
+		int posicion = Integer.parseInt(linea) - 1; 
+                int xArray[] = {2,2,2,1,1,1,0,0,0}; 
+                int yArray[] = {0,1,2,0,1,2,0,1,2};
+                int x = xArray[posicion];
+		int y = yArray[posicion];
 		
 		//aplicar jugada
 		tablero[x][y] = jugador;
@@ -388,7 +397,7 @@ public class RLAgent {
 	public static void main(String[] args) throws Exception {
 		
             int trainingCount = 100000;
-            int humanTrainingCount = 0;
+            int humanTrainingCount = 1;
             double totalGamesCount = 100000.0;            
             int totalExperiments = 1;
             //Double qRates[] = {0.1, 0.2, 0.3, 0.4, 0.5};
